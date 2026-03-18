@@ -682,7 +682,7 @@ function openTournamentReport(ti){
     let rankIdx=i;
     if(tiedWithPrev){rankIdx=i-1;while(rankIdx>0&&isTied(standings[rankIdx],standings[rankIdx-1]))rankIdx--;}
     const rankLabel=tied?`=${rankIdx+1}`:`${i+1}`;
-    return`<tr><td style="font-weight:700;font-family:'JetBrains Mono',monospace">${rankLabel}${rankMedal(i)}</td><td style="font-weight:700">${esc(s.name)}</td><td style="text-align:right;font-family:'JetBrains Mono',monospace;color:var(--green-bright)">${s.w}</td><td style="text-align:right;font-family:'JetBrains Mono',monospace;color:var(--red)">${s.l}</td><td style="text-align:right;font-family:'JetBrains Mono',monospace">${s.pts}</td><td style="text-align:right;font-family:'JetBrains Mono',monospace;color:${diffCol}">${diffStr}</td></tr>`;
+    return`<tr><td style="font-weight:700;font-family:'JetBrains Mono',monospace">${rankLabel}${rankMedal(i)}</td><td style="font-weight:700">${esc(s.name)}</td><td style="text-align:right;font-family:'JetBrains Mono',monospace;color:var(--green-bright)">${s.w}</td><td style="text-align:right;font-family:'JetBrains Mono',monospace;color:var(--ink2)">${s.t}</td><td style="text-align:right;font-family:'JetBrains Mono',monospace;color:var(--red)">${s.l}</td><td style="text-align:right;font-family:'JetBrains Mono',monospace">${s.pts}</td><td style="text-align:right;font-family:'JetBrains Mono',monospace;color:var(--red)">${s.conc}</td><td style="text-align:right;font-family:'JetBrains Mono',monospace;color:${diffCol}">${diffStr}</td></tr>`;
   }).join('');
 
   const matchRow=m=>{
@@ -722,7 +722,7 @@ function openTournamentReport(ti){
     <button class="detail-close" onclick="closeReport()">✕</button>
     <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;margin-bottom:20px;padding-right:44px"><div><div class="detail-name">${esc(tour.name)}</div><div class="detail-sub">${tour.date} · ${tP.length} pelaajaa · ${tM.length} ottelua</div></div>${waBtn}</div>
     <div class="sub-title">Sijoitukset</div>
-    <table class="lb-table" style="margin-bottom:20px"><thead><tr><th>#</th><th>Pelaaja</th><th class="r">V</th><th class="r">H</th><th class="r">P+</th><th class="r" title="Pistesaldo (ensisijainen tasapistetilanteen ratkaisija)">+/-</th></tr></thead><tbody>${standingsHtml}</tbody></table>
+    <table class="lb-table" style="margin-bottom:20px"><thead><tr><th>#</th><th>Pelaaja</th><th class="r">V</th><th class="r">T</th><th class="r">H</th><th class="r">P+</th><th class="r">P-</th><th class="r" title="Pistesaldo (ensisijainen tasapistetilanteen ratkaisija)">+/-</th></tr></thead><tbody>${standingsHtml}</tbody></table>
     <div class="sub-title">Ottelutilastot</div>
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;margin-bottom:4px">
       ${bigM?rCard('💥','Suurin voitto',matchRow(bigM)+`<div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink2);margin-top:6px">Marginaali: ${Math.abs(bigM.sa-bigM.sb)} pistettä</div>`):''}
